@@ -1,0 +1,60 @@
+#!/bin/bash
+
+#$1 is the backup directory
+#$2 is the backup files name list
+
+#start validation
+
+declare backup_directory="./$2"
+declare backup_files="./$1"
+declare current_directory=$(pwd)
+echo "validating backup information"
+
+#fancy loading
+BAR='####################'   # this is full bar, e.g. 20 chars
+
+for i in {1..20}; do
+    echo -ne "\r${BAR:0:$i}" # print $i chars of $BAR from 0 position
+    sleep .1                 # wait 100ms between "frames"
+done
+
+if [ $# -ne 2 ] #runs when no. of arguments is not equal to two
+then
+    echo " You have to give two arguments"
+    exit
+fi
+
+if [ ! -d "$backup_directory" ]; then #checks if the argument providdd is a directory that exists or not
+    echo " $backup_directory does not exist."
+    exit
+fi
+
+if [ ! -f "$backup_files" ]; then #checks if the argument passed is a file which exists or not
+    echo " $backup_files does not exist."
+    exit
+fi
+
+while read var #reads the file for each file name and checks wether it exists or not
+do
+if [ ! -f "./$var" ]; then
+    echo "$var does not exist."
+    exit
+fi
+done < $backup_files
+
+printf "\n validation complete \n Initializing backup process\n"
+#end validation
+
+#start backup
+while read var
+do
+declare archive_file="$var.bak"
+sleep .1
+echo "backing up $var to $backup_directory"
+cd $backup_directory
+touch $var.bak #creates a backup file in the backup directory
+cat ../$var > $var.bak #copy the original file material to the backup file
+cd ..
+echo "Backup finished"
+done < $backup_files
+
