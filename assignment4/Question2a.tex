@@ -1,11 +1,13 @@
-%Overleaf (online website , pdfLaTeX)
+%pdflatex , ubuntu
 
 \documentclass[]{article} 
 
-\usepackage{amsmath}
+%preamble
+\usepackage{amsmath} %package for some advanced math features like matrices , etc
 \usepackage{hyperref}
 \hypersetup{colorlinks=true, linkcolor=blue, urlcolor=blue, citecolor=blue}
 
+%setting various variables/commands to be used in the document
 \title{Hello World!}
 \author{Your Name}
 \date{January 1, 1831}
@@ -13,9 +15,9 @@
 \pagenumbering{gobble} %To stop the page number from printing at the end of the page.
 
 \begin{document}
-	\maketitle
+	\maketitle %prebuilt command that outputs the title,author,date set in the preamble
 	\section{Getting Started}
-	\textbf{Hello World!} Today I am learning \LaTeX. \LaTeX{} is a great program for writing math. I can write in line math such as $a^2+b^2=c^2$. I can also give equations their own space: 
+	\textbf{Hello World!} Today I am learning \LaTeX. \LaTeX{} is a great program for writing math. I can write in line math such as $a^2+b^2=c^2$. I can also give equations their own space:
 	\begin{equation} 
 		\gamma^2+\theta^2=\omega^2
 	\end{equation}

@@ -1,3 +1,5 @@
+#Python3 , ubuntu
+
 # An integer greater than any positive integer
 # Used to tell that the transaction is not possible
 inf = float('inf')
@@ -40,13 +42,16 @@ def Change(n,N):
                     C[i][j] = inf
                 continue
             if j-Denominations[i] >= 0: #for the rest of the table we fill it using the previously calculated data
-                C[i][j] = min(C[i-1][j],1+C[i][j-Denominations[i]]) # first case is we dont use the ith denomination and the second case is we use the ith denomination and we take the minimum of both the cases
+                C[i][j] = min(C[i-1][j],1+C[i][j-Denominations[i]]) 
+# first case is we dont use the ith denomination and the 
+#second case is we use the ith denomination and 
+#we take the minimum of both the cases
             else:
                 C[i][j] = C[i-1][j]
     # C[n-1][N] denotes the
     # Minimum Number of coins using 0 to n-1 denominations of coins
     # to give N amount of money
-    print(C[n-1][N]) #prints the minimum number of coins required to pay the required amount using denominations from 0th position to n-1th position.
+    print("Minimum Number of coins required: " + str(C[n-1][N])) #prints the minimum number of coins required to pay the required amount using denominations from 0th position to n-1th position.
 
 # Number of Coins of Respective Denominations
 def Coin_Counter(n,N):
@@ -65,5 +70,7 @@ def Coin_Counter(n,N):
             i-=1
     print(Coins) #print the number of coins of each denomination used.
 
+
+#calling both the functions with the required params.
 Change(n,N)
 Coin_Counter(n,N)
