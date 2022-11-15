@@ -1,0 +1,45 @@
+QUESTION 1 
+
+Commands for execution:
+-Run terminal in the same folder as the script.awk file and INVENTORY file
+-Run the command: awk -f 210101053_Assignment01_report.awk INVENTORY
+-The terminal should be in full screen.
+
+Explanation of the code:
+I stored the values in respective variables.
+Then I checked if the Quantity On hand is less than the Reorder point.
+If it is the case than I calculated the OrderAmount as Reorder Point + minimum order quantity - Quantity on hand.
+Then i use printf to format the output by applying padding to the output.
+
+----------------------------------------------------------------------------------------------------------------------------------
+
+Question 2
+
+Commands for execution:
+-Run terminal in the same folder as the EMPLOYEE.sh file and EMPLOYEE file
+-Run the command: bash 210101053_Assignment01_EMPLOYEE.sh
+-The terminal should be in full screen.
+
+Formula Used:
+    BasePay = hours worked * payrate
+    OvertimePay = 0.5*extra hours worked * payrate (only for non-exempt employees)
+
+
+Explanation of the code:
+I declared the variables.
+In the while loop i first read each line of the file and store it in a variable 'var'.
+Then I declare the IFS = ' ',IFS is the character at which the string will get cut.
+Then in the next command 'var' is read and cut at each IFS and stored in an array named 'arr'.
+-a arr tells the read command to store all the substrings in a sequential order in the array starting from index 0.
+I store the array values into other better names variables
+Then i check if the worked hours is less than or equal to minimum working hours ,
+if yes , then there is no overtime done so i just calculate the basepay to be given
+if no , then there is some overtime done so i check if the employee is non exempt and if he is then i calculate the overtimepay and the basepay.
+Then i use printf to provide a formatted output.
+
+To do the arithmatic calculations , bash only supports integer calculations 
+So i used the inbult bash functionality 'bc' - basic calculator to do the floating point arithmatic.
+Since the data type of the variables are strings, i first echo the arithmatic that i want to perform and then pipe(output of the echo becomes the input of bc) this to bc which performs the arithmatic and gives the output to the variable.
+
+For the while loop we provide EMPLOYEE as input file to the read command using '<'.
+
